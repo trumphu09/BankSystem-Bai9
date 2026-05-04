@@ -1,8 +1,10 @@
 package banksystem;
 
+import java.nio.file.Paths;
+
 public class StatementLogger {
-    // CỐ TÌNH LỖI: Dùng cứng dấu gạch chéo ngược "\" của Windows
+    // ĐÃ SỬA LỖI: Dùng Paths.get() để Java tự chọn đúng loại dấu gạch chéo
     public static String getStatementPath(String folder, String fileName) {
-        return folder + "\\" + fileName; 
+        return Paths.get(folder, fileName).toString(); 
     }
 }
