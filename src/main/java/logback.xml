@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
+    <!-- 1. Ghi log ra màn hình Console -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- Cấu hình mặc định cho tất cả các logger -->
-    <root level="info">
+    <!-- 2. Ghi log ra file cứng (FileAppender) -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/app.log</file> <!-- Đường dẫn lưu file -->
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Cấu hình mức độ Log -->
+    <root level="INFO">
         <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
     </root>
-
-    <!-- Cấu hình riêng cho package banksystem để hiển thị DEBUG level -->
-    <!-- Bạn có thể thay đổi level ở đây khi cần gỡ lỗi chi tiết hơn -->
-    <logger name="banksystem" level="debug" additivity="false">
-        <appender-ref ref="CONSOLE" />
-    </logger>
-
 </configuration>
